@@ -386,8 +386,4 @@ export interface IAnimationMethodResponse {
 
 //#endregion Interfaces
 
-export interface IThickness {
-    content: number;
-    total: number;
-}
-export declare function _resizeTransition(elementClipper: HTMLElement, element: HTMLElement, options: { from: IThickness; to: IThickness; dimension: string; anchorTrailingEdge: boolean; }): Promise<any>
+export declare function _resizeTransition(elementClipper: HTMLElement, element: HTMLElement, options: { from: number; to: number; full: number; dimension: string; anchorTrailingEdge: boolean; }): Promise<any>
