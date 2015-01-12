@@ -713,9 +713,11 @@ define([
                         return this._executeTranslate(this._menu, "translateY(" + -offsetTop + "px)");
                     } else {
                         // Top AppBar Animation
+                        var menuHeight = this._menu.offsetHeight;
                         return Animations._resizeTransition(this._menu, this._toolbarEl, {
-                            from: { content: heightVisible, total: heightVisible },
-                            to: { content: this._menu.offsetHeight, total: this._menu.offsetHeight },
+                            from: heightVisible,
+                            to: menuHeight,
+                            actualSize: menuHeight,
                             dimension: "height",
                             duration: 400,
                             timing: "ease-in",
@@ -731,9 +733,11 @@ define([
                         return this._executeTranslate(this._menu, "none");
                     } else {
                         // Top AppBar Animation
+                        var menuHeight = this._menu.offsetHeight;
                         return Animations._resizeTransition(this._menu, this._toolbarEl, {
-                            from: { content: this._menu.offsetHeight, total: this._menu.offsetHeight },
-                            to: { content: heightVisible, total: heightVisible },
+                            from: menuHeight,
+                            to: heightVisible,
+                            actualSize: menuHeight,
                             dimension: "height",
                             duration: 400,
                             timing: "ease-in",
