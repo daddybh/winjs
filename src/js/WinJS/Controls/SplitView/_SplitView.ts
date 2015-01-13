@@ -151,7 +151,17 @@ function cancelablePromise(animationPromise: Promise<any>) {
     });
 }
 
-function resizeTransition(elementClipper: HTMLElement, element: HTMLElement, options: { from: number; to: number; full: number; dimension: string; anchorTrailingEdge: boolean; }): Promise<any> {
+interface IResizeTransitionOptions {
+    from: number;
+    to: number;
+    actualSize: number;
+    dimension: string;
+    
+    anchorTrailingEdge?: boolean;
+    duration?: number;
+    timing?: string;
+}
+function resizeTransition(elementClipper: HTMLElement, element: HTMLElement, options: IResizeTransitionOptions): Promise<any> {
     return cancelablePromise(Animations._resizeTransition(elementClipper, element, options));
 }
 
@@ -873,7 +883,7 @@ export class SplitView {
             return resizeTransition(this._dom.paneWrapper, this._dom.pane, {
                 from: from,
                 to: shownPaneThickness.total,
-                full: shownPaneThickness.total,
+                actualSize: shownPaneThickness.total,
                 dimension: dim,
                 anchorTrailingEdge: this.panePlacement === placementRight || this.panePlacement === PanePlacement.bottom
             });
@@ -911,7 +921,7 @@ export class SplitView {
             return resizeTransition(this._dom.paneWrapper, this._dom.pane, {
                 from: from,
                 to: hiddenPaneThickness.total,
-                full: shownPaneThickness.total,
+                actualSize: shownPaneThickness.total,
                 dimension: dim,
                 anchorTrailingEdge: this.panePlacement === placementRight || this.panePlacement === PanePlacement.bottom
             });
